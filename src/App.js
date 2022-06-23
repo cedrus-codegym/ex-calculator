@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import {useState, useRef} from 'react';
+import "./App.css";
+const App = () => {
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    const [result, setResult] = useState("");
+    const num1 = useRef();
+    const num2 = useRef();
+
+    const getValueInput = (input) => Number(input.current.value);
+    
+    
+
+    const plusHandle = ()=>{
+      setResult(getValueInput(num1) + getValueInput(num2));
+    }
+
+    const minusHandle = ()=>{
+      setResult(getValueInput(num1) - getValueInput(num2));
+    }
+
+    const multiplyHandle = ()=>{
+      setResult(getValueInput(num1) * getValueInput(num2));
+    }
+
+    const divideHandle = ()=>{
+      setResult(getValueInput(num1) / getValueInput(num2));
+    }
+
+    return (
+    <div className="container">
+      <input type="number"  ref={num1}/>
+      <input type="number"  ref={num2}/>
+      <p>Result : {result}</p>
+      <button onClick={plusHandle}>+</button>
+      <button onClick={minusHandle}>-</button>
+      <button onClick={multiplyHandle}>x</button>
+      <button onClick={divideHandle}>/</button>
     </div>
-  );
+    );
 }
 
 export default App;
